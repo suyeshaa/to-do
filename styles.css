@@ -1,0 +1,101 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(235, 21%, 11%);
+  background-image: url("images/bg-desktop-dark.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 250px;
+  font-family: "Josefin Sans", sans-serif;
+  color: hsl(0, 0%, 98%);
+}
+
+#nav {
+  width: 30%;
+  margin: 60px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.head {
+  font-size: 32px;
+  letter-spacing: 10px;
+  font-weight: 700;
+}
+
+.input-field {
+  width: 30%;
+  margin: 10px auto;
+  background-color: hsl(235, 24%, 19%);
+  padding: 17px 10px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 3px;
+}
+
+.inp {
+  background-color: transparent;
+  border: none;
+  width: 80%;
+  color: hsl(234, 39%, 85%);
+  font-size: 15px;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.inp:focus {
+  outline: none;
+}
+
+.btn {
+  padding: 10px 10px;
+  border-radius: 50%;
+  border: 1px solid hsl(233, 14%, 35%);
+  background-color: transparent;
+  margin: 0 20px 0 10px;
+}
+
+::placeholder {
+  color: hsl(234, 11%, 52%);
+  font-size: 15px;
+}
+
+.btm {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: hsl(234, 11%, 52%);
+  padding: 15px 10px 0px 10px;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+  padding: 2px 10px 17px 10px;
+  border-bottom: 1px solid hsl(235, 19%, 35%);
+}
+
+.descrip {
+  margin-top: 3px;
+}
+
+.types {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.all,
+.actv {
+  padding: 0 8px;
+}
