@@ -50,12 +50,54 @@ body {
 }
 
 .btn {
-  padding: 10px 10px;
+  padding: 1px;
   border-radius: 50%;
   border: 1px solid hsl(233, 14%, 35%);
   background-color: transparent;
   margin: 0 20px 0 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  height: 25px;
+  width: 25px;
 }
+
+@keyframes animat {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn:hover {
+  animation: animat 1s linear infinite;
+  border: 1px solid transparent;
+  border-radius: 80px;
+  background-image: linear-gradient(#25273c, #25273c),
+    linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+/* .btn::after {
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+.btn button {
+  padding: 10px;
+}
+
+.btn:hover {
+  border-color: transparent;
+  width: 12px;
+  height: 12px;
+  background-image: -webkit-linear-gradient(top, #3acfd5 0%, #3a4ed5 100%);
+  border-radius: 50%;
+} */
 
 ::placeholder {
   color: hsl(234, 11%, 52%);
@@ -68,12 +110,14 @@ body {
   font-size: 12px;
   color: hsl(234, 11%, 52%);
   padding: 15px 10px 0px 10px;
+  cursor: pointer;
 }
 
 #main {
   display: flex;
   flex-direction: column;
-  padding: 15px 0;
+  padding: 0;
+  padding-bottom: 15px;
 }
 
 .item {
@@ -82,7 +126,7 @@ body {
   align-items: flex-start;
   width: 100%;
   margin: 0;
-  padding: 2px 10px 17px 10px;
+  padding: 17px 10px;
   border-bottom: 1px solid hsl(235, 19%, 35%);
 }
 
@@ -98,4 +142,34 @@ body {
 .all,
 .actv {
   padding: 0 8px;
+}
+
+.complete-btn {
+  background-image: url("images/icon-check.svg"),
+    linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.complete-text {
+  color: hsl(234, 11%, 52%);
+  text-decoration-line: line-through;
+}
+
+.close-btn {
+  position: relative;
+  left: 75%;
+  display: none;
+}
+
+.disp {
+  display: block;
+}
+
+.itm-left:hover,
+.all:hover,
+.actv:hover,
+.cmpl:hover,
+.clear:hover {
+  color: white;
 }
