@@ -1,84 +1,271 @@
 var txt = "";
 var num = 0;
+var arr = [];
 
-function add(txt) {
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+console.log(numberWithCommas(327169689040));
+
+function add(txt, cls, clsTxt) {
   var addItem = document.createElement("div");
 
-  addItem.innerHTML = `<div class="item input-field">
-    <button class="btn btm-btn"></button>
-    <div class="descrip">${txt}</div>
+  addItem.innerHTML = `<div class="item input-field draggable ">
+    <button class="btn btm-btn ${cls ? cls : ""}"></button>
+    <div class="descrip ${clsTxt}">${txt}</div>
     <div class ="close-btn"><img src="images/icon-cross.svg" /></div>
   </div>`;
-  document.querySelector(".items").appendChild(addItem);
-  // $(".btm-btn").click(() => {
-  //   $(".btm-btn").toggleClass("complete-btn");
-  //   $(".descrip").toggleClass("complete-text");
-  // });
+
+  $(".items").append(addItem);
+
+  arr.push(addItem);
+  $(".draggable").draggable({
+    axis: "y",
+    revert: true,
+    scroll: false,
+    placeholder: "sortable-placeholder",
+    cursor: "move",
+  });
 }
+
+var arrTxt = [];
 
 $(".main-btn").click(() => {
   var todoItem = $(".inp").val();
   if (todoItem == "") {
-    //error
   } else {
     add(todoItem);
-    num++;
+    arrTxt.push(todoItem);
+
+    $(".btm").css("display", "flex");
+    leftItems();
     $(".itm-left span").text(num);
   }
   $("input").val("");
-  console.log($(".btm-btn"));
+  storeItems();
 });
 
-$(".items").on("click", ".btm-btn", function () {
-  console.log(this);
-  $(this).toggleClass("complete-btn");
-  $(this.nextElementSibling).toggleClass("complete-text");
-});
-
-$(".items").mouseenter(function () {
-  console.log($(this).children().children()[0].lastElementChild);
-  $($(this).children().children()[0].lastElementChild).addClass("disp");
-});
-
-$(".items").mouseleave(() => {
-  $($(this).children().children()[0].lastElementChild).removeClass("disp");
-});
-
-$(".close-btn").click(() => {
-  alert();
-});
-
-var arr = [];
-
-$(".actv").click(() => {
-  arr = $(".btm-btn").toArray();
-  $(".actv").css("color", "white");
-  // $(".items").css("display", "none");
-  $(".items").html("");
-  var result = true;
+function leftItems() {
+  num = 0;
   $.each(arr, function (i, v) {
-    if (!$(v).hasClass("complete-btn")) {
-      result = false;
-      console.log(v.parentElement.children[1].textContent);
-      add(v.parentElement.children[1].textContent);
+    if (
+      !$(v.firstChild.firstChild.nextElementSibling).hasClass("complete-btn")
+    ) {
+      num++;
     }
   });
-  console.log(result);
+
+  storeNum(num);
+}
+
+var temp = "";
+
+$(".items").on("click", ".btm-btn", function () {
+  temp = 1;
+  $(this).toggleClass("complete-btn");
+  $(this.nextElementSibling).toggleClass("complete-text");
+
+  storeItems();
+  leftItems();
+  $(".itm-left span").text(num);
+});
+
+$(".items").on("mouseenter", ".input-field", function () {
+  // console.log(this.lastElementChild);
+  $(this.lastElementChild).addClass("disp");
+});
+
+$(".items").on("mouseleave", ".input-field", function () {
+  $(this.lastElementChild).removeClass("disp");
+});
+
+var delEl = "";
+
+$(".items").on("click", ".close-btn", function () {
+  // console.log(this.parentElement.parentElement);
+  // $(".items").html("");
+  delEl = this.parentElement.parentElement;
+  $.each(arr, function (i, v) {
+    console.log(v);
+    if (v === delEl) {
+      arr.splice(i, 1);
+      $(v.firstChild).remove();
+      num--;
+      $(".itm-left span").text(num);
+    }
+  });
+
+  storeItems();
+  leftItems();
+  $(".itm-left span").text(num);
+  // console.log(arrTxt);
+});
+
+$(".actv").click(() => {
+  $(".all").css("color", "hsl(234, 11%, 52%)");
+  $(".cmpl").css("color", "hsl(234, 11%, 52%)");
+  $(".actv").css("color", " hsl(220, 98%, 61%)");
+  // $(".items").html("");
+  $.each(arr, function (i, v) {
+    $(v).show();
+  });
+
+  $.each(arr, function (i, v) {
+    // console.log($(v.firstChild.firstChild.nextElementSibling));
+    if (
+      $(v.firstChild.firstChild.nextElementSibling).hasClass("complete-btn")
+    ) {
+      // add(v.firstChild.children[1].textContent);
+      // arr.pop();
+      $(v).hide();
+    }
+  });
 });
 
 $(".cmpl").click(() => {
-  arr = $(".btm-btn").toArray();
-  $(".cmpl").css("color", "white");
-  // $(".items").css("display", "none");
-  $(".items").html("");
-  var result = true;
+  $(".all").css("color", "hsl(234, 11%, 52%)");
+  $(".actv").css("color", "hsl(234, 11%, 52%)");
+  $(".cmpl").css("color", " hsl(220, 98%, 61%)");
+  // $(".items").html("");
+  console.log(arr);
   $.each(arr, function (i, v) {
-    if ($(v).hasClass("complete-btn")) {
-      console.log(v.classList.value);
-      result = false;
-      console.log(v.parentElement.children[1].textContent);
-      add(v.parentElement.children[1].textContent);
+    $(v).show();
+  });
+  $.each(arr, function (i, v) {
+    // console.log($(v.firstChild.firstChild.nextElementSibling));
+    if (
+      !$(v.firstChild.firstChild.nextElementSibling).hasClass("complete-btn")
+    ) {
+      $(v).hide();
+
+      // arr.pop();
+    } else {
+      $(v).show();
     }
   });
-  console.log(result);
 });
+
+function showAll() {
+  $(".all").click(() => {
+    $(".actv").css("color", "hsl(234, 11%, 52%)");
+    $(".cmpl").css("color", "hsl(234, 11%, 52%)");
+    $(".all").css("color", " hsl(220, 98%, 61%)");
+    // $(".items").html("");
+    console.log(arr);
+    $.each(arr, function (i, v) {
+      $(v).show();
+    });
+  });
+}
+
+showAll();
+
+$(".clear").click(function () {
+  $(".items").html("");
+
+  let newArr = [];
+  $.each(arr, function (i, v) {
+    if (
+      !$(v.firstChild.firstChild.nextElementSibling).hasClass("complete-btn")
+    ) {
+      newArr.push(v);
+    }
+  });
+
+  arr = [];
+  // arr = [...newArr];
+  // console.log(arr, newArr);
+  $.each(newArr, function (i, v) {
+    console.log(v.firstChild.children[1].textContent);
+    add(v.firstChild.children[1].textContent);
+  });
+  storeItems();
+  leftItems();
+  $(".itm-left span").text(num);
+});
+
+let thm = false;
+
+function getItems() {
+  var retrieveItems = JSON.parse(localStorage.getItem("todoItems"));
+  var curr = localStorage.getItem("theme");
+  var number = localStorage.getItem("numb");
+
+  if (curr == "true") {
+    thm = true;
+    $("body").addClass("dark-theme");
+    // $("body").reClass("dark-theme");
+  } else {
+    thm = false;
+  }
+  console.log(retrieveItems);
+  // nArr = [...retrieveItems];
+
+  $.each(retrieveItems, function (i, { txt, cls, txtcls }) {
+    add(txt, cls, txtcls);
+  });
+
+  $(".itm-left span").text(number);
+
+  // $.each(nArr, function (i, v) {
+  //   if (
+  //     !$(v.firstChild.firstChild.nextElementSibling).hasClass("complete-btn")
+  //   ) {
+  //     add(v.firstChild.children[1].textContent);
+  //   } else {
+  //     add(v.firstChild.children[1].textContent, "complete-btn", "complete-txt");
+  //   }
+  // });
+}
+
+if (localStorage.getItem("todoItems") != null) {
+  getItems();
+  $(".btm").css("display", "flex");
+}
+
+$(".theme").click(() => {
+  $("body").toggleClass("dark-theme");
+  $(".theme").toggleClass("thm");
+  thm = !thm;
+  store(thm);
+});
+
+var nArr = [];
+
+function store(thm) {
+  localStorage.setItem("theme", thm);
+}
+
+function storeNum(num) {
+  localStorage.setItem("numb", num);
+}
+
+function storeItems() {
+  let lclStr = [];
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i].firstChild.children[1].classList.value);
+    lclStr.push({
+      txt: arr[i].firstChild.children[1].textContent,
+      cls: arr[i].firstChild.firstChild.nextElementSibling.classList.value,
+      txtcls: arr[i].firstChild.children[1].classList.value,
+    });
+  }
+  console.log(lclStr);
+  localStorage.setItem("todoItems", JSON.stringify(lclStr));
+}
+
+// function getItems() {
+//   var retrieveItems = JSON.parse(localStorage.getItem("todoItems"));
+//   nArr = [...retrieveItems];
+
+//   $.each(nArr, function (i, v) {
+//     if (
+//       !$(v.firstChild.firstChild.nextElementSibling).hasClass("complete-btn")
+//     ) {
+//       add(v.firstChild.children[1].textContent);
+//     } else {
+//       add(v.firstChild.children[1].textContent, "complete-btn", "complete-txt");
+//     }
+//   });
+// }

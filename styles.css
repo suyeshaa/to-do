@@ -5,12 +5,56 @@
 }
 
 body {
-  background-color: hsl(235, 21%, 11%);
-  background-image: url("images/bg-desktop-dark.jpg");
+  background-color: var(--bg-color);
+  background-image: var(--bg-img);
   background-repeat: no-repeat;
   background-size: 100% 250px;
   font-family: "Josefin Sans", sans-serif;
-  color: hsl(0, 0%, 98%);
+  color: var(--placeholder-clr);
+}
+
+.head {
+  color: white;
+}
+
+.light-theme {
+  --bg-color: hsl(236, 33%, 92%);
+  --bg-img: url("images/bg-desktop-light.jpg");
+  --div-color: hsl(0, 0%, 98%);
+  --txt-color: hsl(235, 19%, 35%);
+  --border-clr: hsl(233, 11%, 84%);
+  --placeholder-clr: hsl(234, 11%, 52%);
+  --img_link: url("images/icon-moon.svg");
+}
+
+.dark-theme {
+  --div-color: hsl(235, 24%, 19%);
+  --bg-img: url("images/bg-desktop-dark.jpg");
+  --bg-color: hsl(235, 21%, 11%);
+  --txt-color: hsl(235, 19%, 35%);
+  --border-clr: hsl(234, 11%, 52%);
+  --placeholder-clr: hsl(234, 11%, 52%);
+  --img_link: url("images/icon-sun.svg");
+}
+/* 
+.light {
+  background-color: hsl(236, 33%, 92%);
+  background-image: url("images/bg-desktop-light.jpg");
+  /* color: hsl(235, 21%, 11%); */
+/* }
+.lig {
+  border-bottom: 1px solid hsl(236, 9%, 61%);
+}
+.lt { */
+/* background-color: hsl(0, 0%, 98%); */
+/* color: hsl(235, 19%, 35%);
+  border-bottom: 1px solid hsl(233, 11%, 84%);
+}  */
+
+.theme {
+  content: var(--img_link);
+  height: 30px;
+  width: 30px;
 }
 
 #nav {
@@ -29,7 +73,7 @@ body {
 .input-field {
   width: 30%;
   margin: 10px auto;
-  background-color: hsl(235, 24%, 19%);
+  background-color: var(--div-color);
   padding: 17px 10px;
   display: flex;
   flex-direction: row;
@@ -40,7 +84,7 @@ body {
   background-color: transparent;
   border: none;
   width: 80%;
-  color: hsl(234, 39%, 85%);
+  color: var(--placeholder-clr);
   font-size: 15px;
   font-family: "Josefin Sans", sans-serif;
 }
@@ -52,7 +96,7 @@ body {
 .btn {
   padding: 1px;
   border-radius: 50%;
-  border: 1px solid hsl(233, 14%, 35%);
+  border: 1px solid var(--border-clr);
   background-color: transparent;
   margin: 0 20px 0 10px;
   cursor: pointer;
@@ -74,11 +118,20 @@ body {
   animation: animat 1s linear infinite;
   border: 1px solid transparent;
   border-radius: 80px;
-  background-image: linear-gradient(#25273c, #25273c),
+  background-image: linear-gradient(var(--div-color), var(--div-color)),
     linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
+
+/* .light-btn {
+  border-color: hsl(233, 11%, 84%);
+}
+
+.light-btn:hover {
+  background-image: linear-gradient(hsl(0, 0%, 98%), hsl(0, 0%, 98%)),
+    linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+} */
 
 /* .btn::after {
   width: 10px;
@@ -111,6 +164,7 @@ body {
   color: hsl(234, 11%, 52%);
   padding: 15px 10px 0px 10px;
   cursor: pointer;
+  display: none;
 }
 
 #main {
@@ -127,7 +181,7 @@ body {
   width: 100%;
   margin: 0;
   padding: 17px 10px;
-  border-bottom: 1px solid hsl(235, 19%, 35%);
+  border-bottom: 1px solid var(--border-clr);
 }
 
 .descrip {
@@ -171,5 +225,9 @@ body {
 .actv:hover,
 .cmpl:hover,
 .clear:hover {
-  color: white;
+  color: hsl(220, 98%, 61%);
+}
+
+.all {
+  color: hsl(220, 98%, 61%);
 }
