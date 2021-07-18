@@ -211,8 +211,8 @@ body {
 }
 
 .close-btn {
-  position: relative;
-  left: 75%;
+  position: sticky;
+  transform: translateX(300px);
   display: none;
 }
 
@@ -230,4 +230,71 @@ body {
 
 .all {
   color: hsl(220, 98%, 61%);
+}
+
+@media (max-width: 1337px) {
+  .input-field,
+  #nav {
+    width: 35%;
+  }
+  .close-btn {
+    left: 400px;
+  }
+}
+
+@media (max-width: 1172px) {
+  .input-field,
+  #nav {
+    width: 38%;
+  }
+  .close-btn {
+    left: 400px;
+  }
+}
+
+@media (max-width: 1092px) {
+  .input-field,
+  #nav {
+    width: 40%;
+  }
+  .close-btn {
+    left: 400px;
+  }
+}
+
+@media (max-width: 1052px) {
+  .input-field,
+  #nav {
+    width: 45%;
+  }
+  .close-btn {
+    left: 400px;
+  }
+}
+
+@media (max-width: 1011px) {
+  .input-field,
+  #nav {
+    width: 53%;
+  }
+  .close-btn {
+    left: 400px;
+  }
+}
+
+@media (max-width: 960px) {
+  .input-field,
+  #nav {
+    width: 60%;
+  }
+  .close-btn {
+    left: 400px;
+  }
+}
+
+@media (max-width: 931px) {
+  .input-field,
+  #nav {
+    width: 65%;
+  }
 }
