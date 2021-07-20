@@ -186,6 +186,8 @@ body {
 
 .descrip {
   margin-top: 3px;
+  width: 75%;
+  word-wrap: break-word;
 }
 
 .types {
@@ -211,9 +213,8 @@ body {
 }
 
 .close-btn {
-  position: sticky;
-  transform: translateX(300px);
   display: none;
+  margin-left: 10px;
 }
 
 .disp {
@@ -232,69 +233,70 @@ body {
   color: hsl(220, 98%, 61%);
 }
 
-@media (max-width: 1337px) {
-  .input-field,
-  #nav {
-    width: 35%;
-  }
-  .close-btn {
-    left: 400px;
+.types-mobile {
+  padding: 10px 0;
+  background-color: var(--div-color);
+  margin: 5px auto;
+  display: none;
+}
+
+@media (max-width: 1149px) {
+  #nav,
+  #main,
+  .media {
+    width: 37%;
   }
 }
 
-@media (max-width: 1172px) {
-  .input-field,
-  #nav {
-    width: 38%;
-  }
-  .close-btn {
-    left: 400px;
+@media (max-width: 947px) {
+  #nav,
+  #main,
+  .media {
+    width: 47%;
   }
 }
 
-@media (max-width: 1092px) {
-  .input-field,
-  #nav {
-    width: 40%;
-  }
-  .close-btn {
-    left: 400px;
+@media (max-width: 767px) {
+  #nav,
+  #main,
+  .media {
+    width: 57%;
   }
 }
 
-@media (max-width: 1052px) {
-  .input-field,
-  #nav {
-    width: 45%;
-  }
-  .close-btn {
-    left: 400px;
+@media (max-width: 622px) {
+  #nav,
+  #main,
+  .media {
+    width: 67%;
   }
 }
 
-@media (max-width: 1011px) {
-  .input-field,
-  #nav {
-    width: 53%;
-  }
-  .close-btn {
-    left: 400px;
+@media (max-width: 508px) {
+  #nav,
+  #main,
+  .media {
+    width: 77%;
   }
 }
 
-@media (max-width: 960px) {
-  .input-field,
-  #nav {
-    width: 60%;
+@media (max-width: 444px) {
+  #nav,
+  #main,
+  .media {
+    width: 87%;
   }
-  .close-btn {
-    left: 400px;
+  .types {
+    display: none;
   }
-}
-
-@media (max-width: 931px) {
-  .input-field,
-  #nav {
-    width: 65%;
+  .types-mobile {
+    display: flex;
+    width: 87%;
+  }
+  .itm-left {
+    padding-left: 15px;
+  }
+  .clear {
+    padding-right: 15px;
   }
 }
