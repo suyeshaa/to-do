@@ -164,7 +164,7 @@ body {
   color: hsl(234, 11%, 52%);
   padding: 15px 10px 0px 10px;
   cursor: pointer;
-  display: none;
+  /* display: none; */
 }
 
 #main {

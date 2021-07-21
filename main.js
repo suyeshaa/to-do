@@ -221,7 +221,7 @@ function getItems() {
 
 if (localStorage.getItem("todoItems") != null) {
   getItems();
-  $(".btm").css("display", "flex");
+  // $(".btm").css("display", "flex");
 }
 
 $(".theme").click(() => {
