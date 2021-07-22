@@ -6,6 +6,20 @@ let thm = false;
 if (localStorage.getItem("todoItems") != null) {
   getItems();
 }
+
+$(".theme").click(() => {
+  // console.log($("body").attr("data-theme"));
+  let currTheme = $("body").attr("data-theme");
+  $("body").attr("data-theme", `${currTheme == "light" ? `dark` : `light`}`);
+  // $("body").attr("data-theme") == "light"
+  //   ? $("body").attr("data-theme", "dark")
+  //   : $("body").attr("data-theme", "light");
+  // $("body").attr("data-theme", "dark");
+  $(".theme").toggleClass("thm");
+  thm = !thm;
+  store(thm);
+});
+
 function getItems() {
   var retrieveItems = JSON.parse(localStorage.getItem("todoItems"));
   var curr = localStorage.getItem("theme");
@@ -40,13 +54,13 @@ function add(txt, cls, clsTxt) {
   $(".items").append(addItem);
 
   arr.push(addItem);
-  $(".draggable").draggable({
-    axis: "y",
-    revert: true,
-    scroll: false,
-    placeholder: "sortable-placeholder",
-    cursor: "move",
-  });
+  // $(".draggable").draggable({
+  //   axis: "y",
+  //   revert: true,
+  //   scroll: false,
+  //   placeholder: "sortable-placeholder",
+  //   cursor: "move",
+  // });
 }
 
 var arrTxt = [];
@@ -203,21 +217,6 @@ $(".clear").click(function () {
   storeItems();
   leftItems();
   $(".itm-left span").text(num);
-});
-
-$(".theme").click(() => {
-  // console.log($("body").attr("data-theme"));
-  let currTheme = $("body").attr("data-theme");
-  $("body").attr("data-theme", `${currTheme == "light" ? `dark` : `light`}`);
-
-  // $("body").attr("data-theme") == "light"
-  //   ? $("body").attr("data-theme", "dark")
-  //   : $("body").attr("data-theme", "light");
-  // $("body").attr("data-theme", "dark");
-
-  $(".theme").toggleClass("thm");
-  thm = !thm;
-  store(thm);
 });
 
 var nArr = [];
