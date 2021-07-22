@@ -1,12 +1,32 @@
 var txt = "";
 var num = 0;
 var arr = [];
+let thm = false;
 
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+if (localStorage.getItem("todoItems") != null) {
+  getItems();
 }
+function getItems() {
+  var retrieveItems = JSON.parse(localStorage.getItem("todoItems"));
+  var curr = localStorage.getItem("theme");
+  var number = localStorage.getItem("numb");
 
-console.log(numberWithCommas(327169689040));
+  if (curr == "true") {
+    thm = true;
+    $("body").attr("data-theme", "dark");
+    // $("body").reClass("dark-theme");
+  } else {
+    thm = false;
+  }
+  console.log(retrieveItems);
+  // nArr = [...retrieveItems];
+
+  $.each(retrieveItems, function (i, { txt, cls, txtcls }) {
+    add(txt, cls, txtcls);
+  });
+
+  $(".itm-left span").text(number);
+}
 
 function add(txt, cls, clsTxt) {
   var addItem = document.createElement("div");
@@ -185,47 +205,16 @@ $(".clear").click(function () {
   $(".itm-left span").text(num);
 });
 
-let thm = false;
-
-function getItems() {
-  var retrieveItems = JSON.parse(localStorage.getItem("todoItems"));
-  var curr = localStorage.getItem("theme");
-  var number = localStorage.getItem("numb");
-
-  if (curr == "true") {
-    thm = true;
-    $("body").addClass("dark-theme");
-    // $("body").reClass("dark-theme");
-  } else {
-    thm = false;
-  }
-  console.log(retrieveItems);
-  // nArr = [...retrieveItems];
-
-  $.each(retrieveItems, function (i, { txt, cls, txtcls }) {
-    add(txt, cls, txtcls);
-  });
-
-  $(".itm-left span").text(number);
-
-  // $.each(nArr, function (i, v) {
-  //   if (
-  //     !$(v.firstChild.firstChild.nextElementSibling).hasClass("complete-btn")
-  //   ) {
-  //     add(v.firstChild.children[1].textContent);
-  //   } else {
-  //     add(v.firstChild.children[1].textContent, "complete-btn", "complete-txt");
-  //   }
-  // });
-}
-
-if (localStorage.getItem("todoItems") != null) {
-  getItems();
-  // $(".btm").css("display", "flex");
-}
-
 $(".theme").click(() => {
-  $("body").toggleClass("dark-theme");
+  // console.log($("body").attr("data-theme"));
+  let currTheme = $("body").attr("data-theme");
+  $("body").attr("data-theme", `${currTheme == "light" ? `dark` : `light`}`);
+
+  // $("body").attr("data-theme") == "light"
+  //   ? $("body").attr("data-theme", "dark")
+  //   : $("body").attr("data-theme", "light");
+  // $("body").attr("data-theme", "dark");
+
   $(".theme").toggleClass("thm");
   thm = !thm;
   store(thm);

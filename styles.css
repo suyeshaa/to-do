@@ -16,7 +16,7 @@ body {
 .head {
   color: white;
 }
-
+/* 
 .light-theme {
   --bg-color: hsl(236, 33%, 92%);
   --bg-img: url("images/bg-desktop-light.jpg");
@@ -28,6 +28,26 @@ body {
 }
 
 .dark-theme {
+  --div-color: hsl(235, 24%, 19%);
+  --bg-img: url("images/bg-desktop-dark.jpg");
+  --bg-color: hsl(235, 21%, 11%);
+  --txt-color: hsl(235, 19%, 35%);
+  --border-clr: hsl(234, 11%, 52%);
+  --placeholder-clr: hsl(234, 11%, 52%);
+  --img_link: url("images/icon-sun.svg");
+} */
+
+body[data-theme="light"] {
+  --bg-color: hsl(236, 33%, 92%);
+  --bg-img: url("images/bg-desktop-light.jpg");
+  --div-color: hsl(0, 0%, 98%);
+  --txt-color: hsl(235, 19%, 35%);
+  --border-clr: hsl(233, 11%, 84%);
+  --placeholder-clr: hsl(234, 11%, 52%);
+  --img_link: url("images/icon-moon.svg");
+}
+
+body[data-theme="dark"] {
   --div-color: hsl(235, 24%, 19%);
   --bg-img: url("images/bg-desktop-dark.jpg");
   --bg-color: hsl(235, 21%, 11%);
